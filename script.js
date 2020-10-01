@@ -11,12 +11,15 @@
 //
 // * Gather user input with prompt's and confirm's
 
+// User's variable choices
 
 var confirmLength = "";
 var confirmSpecialCharacter;
 var confirmNumericCharacter;
 var confirmLowercase;
 var confirmUppercase;
+
+// 
 
 var number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var specialChar = ["!", "%", "&", ",", "*", "+", "-", ".", "/", "<", ">", "?","~"];
@@ -26,10 +29,11 @@ var alphaUpper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M
 function generateOptions (){
   var confirmLength = (prompt("Choose a Password length between 8 and 128"));
 
-  while(confirmLength < 8 || confirmLength > 128) {
+  if(confirmLength < 8 || confirmLength > 128) {
     alert("Password must be 8 to 128 characters!");
     var confirmLength = (prompt("Choose a Password length between 8 and 128"));
-}
+    }
+
 var confirmSpecialCharacter = confirm("Would you like to add special characters?");
 var confirmNumericCharacter = confirm("Would you like to add numbers? ");
 var confirmLowercase = confirm("Would you like to add lowercase letters?");
@@ -49,29 +53,13 @@ if(confirmSpecialCharacter === false && confirmNumericCharacter === false && con
   }
   return savedOptions;
 }
+
+// Generate password function
+
 function generatePassword() {
   var options = generateOptions();
-  // var confirmLength = (prompt("Choose a Password length between 8 and 128"));
-
-  // while(confirmLength < 8 || confirmLength > 128) {
-  //   alert("Password must be 8 to 128 characters!");
-  //   var confirmLength = (prompt("Choose a Password length between 8 and 128"));
-  // }
-
-  
-    // var confirmSpecialCharacter = confirm("Would you like to add special characters?");
-    // var confirmNumericCharacter = confirm("Would you like to add numbers? ");
-    // var confirmLowercase = confirm("Would you like to add lowercase letters?");
-    // var confirmUppercase = confirm("Would you like to add uppercase letters?");
-
-      // if(confirmSpecialCharacter === false && confirmNumericCharacter === false && confirmLowercase === false && confirmUppercase === false) {
-      //   alert("You must select one parameter");
-      //   return;
-      // }
 
       var passwordCharacters = []
-
-      var generatedPassword = []
 
       if (options.confirmSpecialCharacter === true) {
         passwordCharacters = passwordCharacters.concat(specialChar)
@@ -98,7 +86,6 @@ function generatePassword() {
  for (var i = 0; i < options.confirmLength; i++) {
         randomPassword = randomPassword + passwordCharacters[Math.floor(Math.random() * passwordCharacters.length)];
         console.log("randomPassword" + randomPassword)
-        // generatedPassword.push(randomPassword);
       }
       return randomPassword;
 }
@@ -118,7 +105,6 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-  console.log("writePassword")
 }
 
 // Add event listener to generate button
